@@ -11,10 +11,10 @@ async function setup() {
       facingMode: 'environment'
     }
   }
-  console.log(settings)
-  const stream = await navigator.mediaDevices.getUserMedia(settings)
+  console.log(settings);
+  const stream = await navigator.mediaDevices.getUserMedia(settings);
 
-  video.srcObject = stream
+  video.srcObject = stream;
 
   video.addEventListener("playing", async () => {
     const worker = Tesseract.createWorker()
@@ -27,6 +27,7 @@ async function setup() {
     canvas.height = video.height
 
     document.addEventListener("keypress", async e => {
+      console.log("key press");
       if (e.code !== "Space") return
       canvas.getContext("2d").drawImage(video, 0, 0, video.width, video.height)
       const {
