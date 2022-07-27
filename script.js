@@ -2,7 +2,8 @@ const video = document.querySelector("video")
 const textElem = document.querySelector("[data-text]")
 
 async function setup() {
-  const stream = await navigator.mediaDevices.getUserMedia({ video: true })
+  const stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
+
   video.srcObject = stream
 
   video.addEventListener("playing", async () => {
