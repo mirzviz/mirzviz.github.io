@@ -1,1 +1,0 @@
-# mirzviz.github.io
