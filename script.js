@@ -1,7 +1,13 @@
 const video = document.querySelector("video")
 const textElem = document.querySelector("[data-text]")
 
+document.getElementById("btn_start_scan").addEventListener("click", () => setup());
+
+
 async function setup() {
+  var select = document.getElementById('language');
+  let language = select.options[select.selectedIndex].value;
+  console.log(language); 
 
   const settings = {
     video: true
@@ -19,8 +25,8 @@ async function setup() {
   video.addEventListener("playing", async () => {
     const worker = Tesseract.createWorker()
     await worker.load()
-    await worker.loadLanguage("heb")
-    await worker.initialize("heb")
+    await worker.loadLanguage(language)
+    await worker.initialize(language)
 
     const canvas = document.createElement("canvas")
     canvas.width = video.width
@@ -43,4 +49,3 @@ async function setup() {
   })
 }
 
-setup()
